@@ -1,40 +1,40 @@
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
+document.addEventListener("DOMContentLoaded", () => {
+    // Menu Responsivo
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    const navItems = document.querySelectorAll("#nav-menu a");
 
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
 
-const navItems = document.querySelectorAll("#nav-menu a");
+    navItems.forEach(item => item.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
 
-hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-});
+    // Envio WhatsApp
+    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-navItems.forEach(item => item.addEventListener("click"), () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-});
+        const nome = document.getElementById('nome').value.trim();
+        const telefone = document.getElementById('telefone').value.trim();
+        const queixa = document.getElementById('queixa').value;
+        const ciente = document.getElementById('ciente').checked;
 
-// Formulário do WhatsApp
-document.getElementById('whatsappForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+        // Número alvo
+        const numeroClinica = "554384137743";
 
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
-    const queixa = document.getElementById('queixa').value;
-    const ciente = document.getElementById('ciente').checked;
+        let mensagem = `Olá! Meu nome é *${nome}* e gostaria de agendar uma avaliação.\n\n`;
+        mensagem += `*Minha queixa principal:* ${queixa}\n`;
+        mensagem += `*Meu Contato:* ${telefone}\n\n`;
 
-    // NÚMERO CORRIGIDO COM DDI 55 (Brasil)
-    const numeroClinica = "554384137743";
+        if (ciente) {
+            mensagem += `✅ _Confirmo estar ciente de que a clínica atua com protocolos que variam de pequenos retoques a planejamentos completos._`;
+        }
 
-    let mensagem = `Olá! Meu nome é *${nome}* e gostaria de agendar uma avaliação.\n\n`;
-    mensagem += `*Minha queixa principal:* ${queixa}\n`;
-    mensagem += `*Meu Contato:* ${telefone}\n\n`;
-
-    if (ciente) {
-        mensagem += `✅ _Confirmo estar ciente de que os valores e protocolos exatos são definidos apenas em avaliação clínica presencial._`;
-    }
-
-    // Abre o WhatsApp
-    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroClinica}&text=${encodeURIComponent(mensagem)}`;
-    window.open(urlWhatsApp, '_blank');
+        const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroClinica}&text=${encodeURIComponent(mensagem)}`;
+        window.open(urlWhatsApp, '_blank');
+    });
 });

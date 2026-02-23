@@ -1,27 +1,17 @@
 @charset "UTF-8";
 
+/* =========================================
+   VARIAVEIS E RESET GLOBAL DE ALTA PERFORMANCE
+   ========================================= */
 :root {
     --bg-color: #FBFBF9;
-    /* Off-white sofisticado */
     --text-color: #2A2A2A;
-    /* Chumbo elegante */
-    --text-light: #666666;
-    /* Cinza para subtítulos */
     --gold: #B89768;
-    /* Dourado premium */
-    --gold-hover: #A48355;
+    --gold-hover: #9e8055;
     --dark-green: #1E352F;
-    /* Verde profundo para contraste */
     --white: #FFFFFF;
-
-    --font-body: 'Lato', sans-serif;
-    --font-heading: 'Playfair Display', serif;
-
-    --section-spacing: 120px;
-    /* Espaçamento vertical generoso */
-    --container-width: 1200px;
-    --border-radius-soft: 4px;
-    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.06);
+    --fonte-padrao: 'Lato', sans-serif;
+    --fonte-titulo: 'Playfair Display', serif;
 }
 
 *,
@@ -32,96 +22,79 @@
     box-sizing: border-box;
 }
 
-html {
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-    /* Compensa a navbar fixa */
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--fonte-padrao);
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.7;
-    /* Leitura mais agradável */
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-}
-
-ul {
-    list-style: none;
-}
-
-img {
+img,
+svg {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Utilitários */
-.container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 25px;
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;
 }
 
-section {
-    padding: var(--section-spacing) 0;
-}
-
-.section-title {
-    font-size: 3rem;
-    color: var(--dark-green);
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.section-subtitle {
-    text-align: center;
-    max-width: 650px;
-    margin: 0 auto 60px auto;
-    color: var(--text-light);
-    font-size: 1.15rem;
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    overflow-wrap: break-word;
 }
 
 /* =========================================
-           COMPONENTES: BOTÕES
-           ========================================= */
+   ARQUITETURA DE CONTAINERS (ANTI-QUEBRA)
+   ========================================= */
+section,
+footer {
+    padding: 100px 0;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    /* Padding de segurança dentro do container, não da seção */
+}
+
+/* =========================================
+   COMPONENTES E BOTÕES
+   ========================================= */
 .btn-gold {
     display: inline-block;
     background-color: var(--gold);
     color: var(--white);
-    padding: 18px 38px;
+    padding: 16px 32px;
     font-size: 1rem;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-align: center;
-    border-radius: var(--border-radius-soft);
+    max-width: 100%;
+    /* Impede botão de vazar */
 }
 
 .btn-gold:hover {
     background-color: var(--gold-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(184, 151, 104, 0.2);
 }
 
 .btn-dark {
@@ -129,48 +102,50 @@ section {
 }
 
 .btn-dark:hover {
-    background-color: #152722;
-    box-shadow: 0 10px 20px rgba(30, 53, 47, 0.2);
+    background-color: #12211d;
 }
 
 .btn-full {
     width: 100%;
+    font-weight: bold;
 }
 
 /* =========================================
-           NAVBAR (Glassmorphism Sutil)
-           ========================================= */
+   NAVEGAÇÃO
+   ========================================= */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(251, 251, 249, 0.95);
-    backdrop-filter: blur(12px);
+    background-color: rgba(251, 251, 249, 0.98);
+    backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
     color: var(--dark-green);
-    font-weight: 700;
-    letter-spacing: -1px;
+    font-weight: 600;
 }
 
 .nav-menu {
     display: flex;
+    list-style: none;
     align-items: center;
-    gap: 40px;
-    /* Mais espaço entre links */
+    gap: 30px;
 }
 
 .nav-link {
@@ -178,23 +153,6 @@ section {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    color: var(--text-color);
-    position: relative;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--gold);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
 }
 
 .nav-link:hover {
@@ -202,98 +160,93 @@ section {
 }
 
 .nav-cta {
-    padding: 12px 28px;
-    font-size: 0.85rem;
+    padding: 10px 20px;
+    font-size: 0.8rem;
 }
 
-/* Hamburger */
 .hamburger {
     display: none;
     cursor: pointer;
-    padding: 10px;
 }
 
 .bar {
     display: block;
-    width: 28px;
-    height: 2px;
-    margin: 6px auto;
-    transition: all 0.3s ease-in-out;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: 0.3s;
     background-color: var(--dark-green);
 }
 
 /* =========================================
-           SEÇÃO HERO
-           ========================================= */
+   SEÇÕES GERAIS
+   ========================================= */
 .hero {
-    min-height: 95vh;
-    /* Ocupa quase toda a tela */
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* ATENÇÃO: Substitua 'bg-clinica.jpg' pela imagem real */
-    background: linear-gradient(rgba(240, 240, 235, 0.85), rgba(240, 240, 235, 0.9)), url('bg-clinica.jpg') center/cover no-repeat;
-    padding-top: 100px;
+    background: linear-gradient(rgba(251, 251, 249, 0.9), rgba(251, 251, 249, 0.9)), url('bg-clinica.jpg') center/cover;
+    padding-top: 80px;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
-    line-height: 1.1;
+.hero h1 {
+    font-size: 3.5rem;
     color: var(--dark-green);
-    margin-bottom: 25px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 20px;
 }
 
-.hero-content p {
-    font-size: 1.35rem;
-    max-width: 700px;
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    color: #555;
+}
+
+.section-title {
+    color: var(--dark-green);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.section-subtitle {
+    max-width: 600px;
     margin: 0 auto 50px auto;
-    color: var(--text-color);
-    font-weight: 300;
+    color: #555;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
-/* =========================================
-           PRICING (O Filtro)
-           ========================================= */
+/* Grid Sistema Universal */
+.pricing-grid,
+.services-grid,
+.about-grid,
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* Pricing Cards */
 .pricing-section {
     background-color: var(--white);
 }
 
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    /* Cards ligeiramente mais largos */
-    gap: 40px;
-    align-items: center;
-    /* Alinha verticalmente se um card for maior */
-}
-
 .pricing-card {
     background: var(--bg-color);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    padding: 50px 40px;
-    /* Mais respiro interno */
-    border-radius: var(--border-radius-soft);
-    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 40px 30px;
+    border-radius: 8px;
     position: relative;
-    transition: all 0.3s ease;
-}
-
-.pricing-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-soft);
 }
 
 .highlight-card {
     background: var(--dark-green);
     color: var(--white);
-    border: none;
-    box-shadow: 0 25px 50px rgba(30, 53, 47, 0.25);
-    padding: 60px 40px;
-    /* Destaca o card principal */
+    border-color: var(--gold);
 }
 
 .pricing-tag {
@@ -303,215 +256,153 @@ section {
     transform: translateX(-50%);
     background: var(--gold);
     color: var(--white);
-    padding: 8px 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border-radius: 20px;
+    letter-spacing: 1px;
+    width: max-content;
+    max-width: 90%;
+    text-align: center;
 }
 
 .pricing-header h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    font-family: var(--font-body);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: var(--fonte-padrao);
 }
 
-.highlight-card h3 {
+.highlight-card .pricing-header h3 {
     color: var(--white);
 }
 
 .price {
     display: block;
-    font-size: 2.8rem;
-    font-family: var(--font-heading);
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
     color: var(--gold);
-    margin-bottom: 30px;
-    line-height: 1;
+    margin-bottom: 25px;
 }
 
 .price small {
-    font-size: 1.1rem;
-    color: inherit;
-    opacity: 0.8;
-    font-family: var(--font-body);
+    font-size: 1rem;
+    opacity: 0.7;
     font-weight: 400;
 }
 
+.pricing-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
 .pricing-features li {
-    margin-bottom: 18px;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
 }
 
 .pricing-cta-wrapper {
-    margin-top: 60px;
+    margin-top: 50px;
     text-align: center;
 }
 
 .pricing-cta-wrapper p {
-    margin-bottom: 25px;
-    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
     font-style: italic;
 }
 
-/* =========================================
-           PROTOCOLOS & SERVIÇOS
-           ========================================= */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 50px;
-    /* Gap generoso */
-}
-
+/* Serviços e Sobre */
 .service-card {
     background: var(--white);
-    padding: 50px;
-    border-top: 5px solid var(--gold);
-    box-shadow: var(--shadow-soft);
-    border-radius: var(--border-radius-soft);
-    transition: all 0.3s ease;
+    padding: 40px;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.service-card:hover {
-    transform: translateY(-8px);
-}
-
-.service-card h3 {
-    font-size: 1.75rem;
-    margin-bottom: 20px;
-    color: var(--dark-green);
-}
-
-.service-card p {
-    color: var(--text-light);
-}
-
-/* =========================================
-           LANÇAMENTO (Bioestimulador)
-           ========================================= */
 .launch-section {
     background-color: var(--white);
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border: 1px solid #eaeaea;
     text-align: center;
-    padding: 140px 0;
-    /* Mais destaque */
 }
 
 .launch-tag {
     color: var(--gold);
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-weight: bold;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block;
-    font-size: 0.9rem;
 }
 
 .launch-title {
     color: var(--dark-green);
-    font-size: 3rem;
-    margin-bottom: 25px;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
 .launch-desc {
-    max-width: 750px;
-    margin: 0 auto 45px auto;
-    color: var(--text-color);
-    font-size: 1.3rem;
-    line-height: 1.8;
-}
-
-/* =========================================
-           SOBRE A DOUTORA
-           ========================================= */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    /* Gap grande para sofisticação */
-    align-items: center;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    color: #555;
 }
 
 .about-img {
     width: 100%;
-    height: 600px;
+    height: 500px;
     background-color: #ddd;
-    /* ATENÇÃO: Substitua 'foto-dra.jpg' pela imagem real */
-    background: url('foto-dra.jpg') center/cover no-repeat;
-    border-radius: var(--border-radius-soft);
-    box-shadow: var(--shadow-soft);
+    background-size: cover;
+    background-position: center;
 }
 
 .about-title {
     color: var(--gold);
-    margin-bottom: 30px;
-    font-size: 3rem;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
 }
 
-.about-text p {
-    margin-bottom: 25px;
-    font-size: 1.1rem;
-    color: var(--text-light);
-}
-
-.about-text strong {
-    color: var(--dark-green);
-}
-
-/* =========================================
-           FORMULÁRIO (O Segurança)
-           ========================================= */
+/* Formulário */
 .form-section {
-    background-color: var(--dark-green);
+    background-color: var(--text-color);
     color: var(--white);
 }
 
-.form-section .section-title {
-    color: var(--gold);
-}
-
-.form-section .section-subtitle {
-    color: rgba(255, 255, 255, 0.8);
+.form-subtitle {
+    text-align: center;
+    margin-bottom: 50px;
+    opacity: 0.8;
 }
 
 .qualifier-form {
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
+    width: 100%;
 }
 
 input,
 select {
     width: 100%;
-    padding: 18px 20px;
-    /* Inputs mais altos e confortáveis */
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--white);
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    border-radius: var(--border-radius-soft);
-    transition: all 0.3s ease;
+    font-family: var(--fonte-padrao);
+    font-size: 1rem;
+    max-width: 100%;
 }
 
 input:focus,
 select:focus {
     outline: none;
     border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 15px rgba(184, 151, 104, 0.2);
 }
 
 select option {
-    background-color: var(--dark-green);
+    background-color: var(--text-color);
     color: var(--white);
 }
 
@@ -519,159 +410,102 @@ select option {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    font-size: 1rem;
-    line-height: 1.5;
-    background: rgba(184, 151, 104, 0.08);
-    padding: 25px;
-    border-left: 4px solid var(--gold);
-    border-radius: var(--border-radius-soft);
+    font-size: 0.9rem;
+    opacity: 0.9;
+    background: rgba(184, 151, 104, 0.1);
+    padding: 20px;
+    border-left: 3px solid var(--gold);
 }
 
 .checkbox-group input {
-    width: 20px;
-    height: 20px;
-    margin-top: 4px;
-    accent-color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 5px;
 }
 
-/* =========================================
-           FOOTER PREMIUM
-           ========================================= */
+/* Impede checkbox de distorcer */
+
+/* Footer Premium */
 footer {
     background-color: var(--white);
-    padding: 100px 0 30px;
+    padding: 60px 0 20px 0;
     color: var(--text-color);
-    border-top: 1px solid #eee;
 }
 
 .footer-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 1fr;
-    /* Grid assimétrico para melhor distribuição */
-    gap: 50px;
-    padding-bottom: 60px;
     border-bottom: 1px solid #eaeaea;
+    padding-bottom: 40px;
 }
 
 .footer-brand h2 {
-    font-size: 2rem;
-    color: var(--dark-green);
-    margin-bottom: 20px;
-}
-
-.footer-brand p,
-.footer-contact p {
-    color: var(--text-light);
-    font-size: 1rem;
-}
-
-.footer-heading {
-    font-size: 1.2rem;
-    margin-bottom: 25px;
     color: var(--dark-green);
 }
 
-.footer-contact .footer-email {
+.footer-brand p {
     margin-top: 15px;
-    font-weight: 700;
-    color: var(--gold);
+    font-size: 0.9rem;
+    color: #666;
 }
 
-/* Redes Sociais com Ícone WhatsApp Oficial */
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--dark-green);
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
 .social-links-elegant {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .social-icon {
     display: flex;
     align-items: center;
-    gap: 15px;
-    color: var(--text-light);
-    font-weight: 600;
-    transition: all 0.3s ease;
+    gap: 12px;
+    color: #666;
+    font-size: 0.95rem;
 }
 
-.social-icon svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-    /* Permite mudar a cor com CSS */
-    transition: transform 0.3s ease;
-}
-
-/* Hover Dourado Sofisticado para ambos */
 .social-icon:hover {
     color: var(--gold);
 }
 
-.social-icon:hover svg {
-    transform: translateY(-3px);
-}
-
-
 .map-container iframe {
     width: 100%;
-    height: 220px;
+    height: 200px;
     border: none;
-    filter: grayscale(100%) contrast(110%) brightness(110%);
-    /* Mapa P&B chique */
-    border-radius: var(--border-radius-soft);
+    filter: grayscale(100%) contrast(120%);
 }
 
 .frontlab-signature {
     text-align: center;
-    padding-top: 30px;
-    font-size: 0.85rem;
-    color: #999;
-    letter-spacing: 1px;
+    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #888;
 }
 
 .frontlab-signature a {
     color: var(--gold);
-    font-weight: 700;
+    font-weight: bold;
 }
 
 /* =========================================
-           RESPONSIVO (TABLET & MOBILE)
-           ========================================= */
+   MEDIA QUERIES (A Vacina Definitiva)
+   ========================================= */
 @media (max-width: 1024px) {
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-
-    .pricing-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-
-    .about-img {
-        height: 450px;
-        order: -1;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --section-spacing: 80px;
-    }
-
-    .navbar {
-        padding: 10px 0;
+    .btn-gold {
+        width: 100%;
+        display: block;
     }
 
     .hamburger {
         display: block;
-        z-index: 1001;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -689,46 +523,74 @@ footer {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 0;
+        top: 70px;
+        gap: 0;
         flex-direction: column;
-        justify-content: center;
-        background-color: var(--bg-color);
+        background-color: var(--white);
         width: 100%;
-        height: 100vh;
-        transition: 0.4s ease-in-out;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     }
 
     .nav-menu.active {
         left: 0;
     }
 
+    .nav-item {
+        margin: 16px 0;
+    }
+
     .nav-link {
-        font-size: 1.2rem;
+        display: block;
+        padding: 20px;
+        color: var(--text-color);
     }
 
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .nav-cta-item {
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    section,
+    footer {
+        padding: 60px 0;
     }
 
-    .section-title {
-        font-size: 2.2rem;
-    }
-
-    .launch-title {
+    .hero h1 {
         font-size: 2rem;
     }
 
-    .pricing-card.highlight-card {
-        transform: scale(1.02);
+    .section-title,
+    .launch-title,
+    .about-title {
+        font-size: 1.6rem;
     }
 
+    .price {
+        font-size: 1.8rem;
+    }
+
+    .pricing-grid,
+    .services-grid,
+    .about-grid,
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
     }
 
-    .btn-gold {
-        width: 100%;
-        padding: 16px 20px;
+    .about-img {
+        height: 300px;
+    }
+
+    .pricing-card,
+    .service-card {
+        padding: 30px 20px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
     }
 }
