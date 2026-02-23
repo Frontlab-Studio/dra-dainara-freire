@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const numeroClinica = "554384137743";
 
         let mensagem = `Olá! Meu nome é *${nome}* e gostaria de agendar uma avaliação.\n\n`;
-        mensagem += `*Minha queixa principal:* ${queixa}\n`;
+        mensagem += `*Área de interesse:* ${queixa}\n`;
         mensagem += `*Meu Contato:* ${telefone}\n\n`;
 
         if (ciente) {
