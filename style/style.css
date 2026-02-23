@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-/* =========================================
-   VARIAVEIS E RESET GLOBAL DE ALTA PERFORMANCE
-   ========================================= */
+
 :root {
     --bg-color: #FBFBF9;
     --text-color: #2A2A2A;
@@ -58,9 +56,6 @@ h3 {
     overflow-wrap: break-word;
 }
 
-/* =========================================
-   ARQUITETURA DE CONTAINERS (ANTI-QUEBRA)
-   ========================================= */
 section,
 footer {
     padding: 100px 0;
@@ -72,12 +67,8 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    /* Padding de segurança dentro do container, não da seção */
 }
 
-/* =========================================
-   COMPONENTES E BOTÕES
-   ========================================= */
 .btn-gold {
     display: inline-block;
     background-color: var(--gold);
@@ -90,7 +81,6 @@ footer {
     cursor: pointer;
     text-align: center;
     max-width: 100%;
-    /* Impede botão de vazar */
 }
 
 .btn-gold:hover {
@@ -110,9 +100,6 @@ footer {
     font-weight: bold;
 }
 
-/* =========================================
-   NAVEGAÇÃO
-   ========================================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -178,9 +165,6 @@ footer {
     background-color: var(--dark-green);
 }
 
-/* =========================================
-   SEÇÕES GERAIS
-   ========================================= */
 .hero {
     min-height: 100dvh;
     display: flex;
@@ -219,7 +203,6 @@ footer {
     text-align: center;
 }
 
-/* Grid Sistema Universal */
 .pricing-grid,
 .services-grid,
 .about-grid,
@@ -230,7 +213,6 @@ footer {
     width: 100%;
 }
 
-/* Pricing Cards */
 .pricing-section {
     background-color: var(--white);
 }
@@ -313,7 +295,6 @@ footer {
     font-style: italic;
 }
 
-/* Serviços e Sobre */
 .service-card {
     background: var(--white);
     padding: 40px;
@@ -362,7 +343,6 @@ footer {
     font-size: 2.5rem;
 }
 
-/* Formulário */
 .form-section {
     background-color: var(--text-color);
     color: var(--white);
@@ -406,6 +386,7 @@ select option {
     color: var(--white);
 }
 
+
 .checkbox-group {
     display: flex;
     align-items: flex-start;
@@ -415,16 +396,23 @@ select option {
     background: rgba(184, 151, 104, 0.1);
     padding: 20px;
     border-left: 3px solid var(--gold);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .checkbox-group input {
+    width: auto;
+    padding: 0;
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
-/* Impede checkbox de distorcer */
+.checkbox-group label {
+    flex: 1;
+    line-height: 1.5;
+    word-wrap: break-word; 
+}
 
-/* Footer Premium */
 footer {
     background-color: var(--white);
     padding: 60px 0 20px 0;
@@ -495,9 +483,6 @@ footer {
     font-weight: bold;
 }
 
-/* =========================================
-   MEDIA QUERIES (A Vacina Definitiva)
-   ========================================= */
 @media (max-width: 1024px) {
     .btn-gold {
         width: 100%;
