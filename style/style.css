@@ -570,7 +570,7 @@ footer {
 /* =========================================
    MEDIA QUERIES (Vacina Mobile)
    ========================================= */
-@media (max-width: 1024px) {
+@media (max-width: 750px) {
     .btn-gold {
         width: 100%;
         display: block;
