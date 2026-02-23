@@ -570,7 +570,7 @@ footer {
 /* =========================================
    MEDIA QUERIES (Vacina Mobile)
    ========================================= */
-@media (max-width: 750px) {
+@media (max-width: 1024px) {
     .btn-gold {
         width: 100%;
         display: block;
@@ -627,11 +627,61 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    section {
+        padding: 60px 15px;
+    }
+
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-title,
+    .services h2,
+    .launch-title,
+    .about-title,
+    .form-section h2 {
+        font-size: 1.8rem;
+    }
+
+
+    .pricing-grid,
+    .services-grid,
+    .about-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .btn-gold,
+    .btn-dark {
+        padding: 15px 10px;
+        font-size: 0.9rem;
+        white-space: normal;
+        word-wrap: break-word;
     }
 
     .about-img {
-        height: 350px;
+        height: 300px;
+    }
+
+    .pricing-card,
+    .service-card {
+        padding: 30px 20px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
