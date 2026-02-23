@@ -1,10 +1,14 @@
 @charset "UTF-8";
 
-
+/* =========================================
+   VARIAVEIS E RESET GLOBAL
+   ========================================= */
 :root {
     --bg-color: #FBFBF9;
     --text-color: #2A2A2A;
     --gold: #B89768;
+    --gold-text: #8E6B3E;
+    /* Dourado mais escuro para passar no PageSpeed Insights */
     --gold-hover: #9e8055;
     --dark-green: #1E352F;
     --white: #FFFFFF;
@@ -56,6 +60,9 @@ h3 {
     overflow-wrap: break-word;
 }
 
+/* =========================================
+   ARQUITETURA DE CONTAINERS
+   ========================================= */
 section,
 footer {
     padding: 100px 0;
@@ -69,10 +76,15 @@ footer {
     padding: 0 20px;
 }
 
+/* =========================================
+   BOTÕES (CORRIGIDOS PARA ALTO CONTRASTE)
+   ========================================= */
 .btn-gold {
     display: inline-block;
     background-color: var(--gold);
-    color: var(--white);
+    color: var(--dark-green);
+    /* Texto escuro no fundo claro para passar no Google */
+    font-weight: 700;
     padding: 16px 32px;
     font-size: 1rem;
     text-transform: uppercase;
@@ -84,11 +96,13 @@ footer {
 }
 
 .btn-gold:hover {
-    background-color: var(--gold-hover);
+    background-color: var(--dark-green);
+    color: var(--gold);
 }
 
 .btn-dark {
     background-color: var(--dark-green);
+    color: var(--white);
 }
 
 .btn-dark:hover {
@@ -97,9 +111,11 @@ footer {
 
 .btn-full {
     width: 100%;
-    font-weight: bold;
 }
 
+/* =========================================
+   NAVEGAÇÃO
+   ========================================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -143,7 +159,7 @@ footer {
 }
 
 .nav-link:hover {
-    color: var(--gold);
+    color: var(--gold-text);
 }
 
 .nav-cta {
@@ -165,6 +181,9 @@ footer {
     background-color: var(--dark-green);
 }
 
+/* =========================================
+   SEÇÕES GERAIS
+   ========================================= */
 .hero {
     min-height: 100dvh;
     display: flex;
@@ -203,6 +222,7 @@ footer {
     text-align: center;
 }
 
+/* Grid Sistema Universal */
 .pricing-grid,
 .services-grid,
 .about-grid,
@@ -213,6 +233,7 @@ footer {
     width: 100%;
 }
 
+/* Pricing Cards */
 .pricing-section {
     background-color: var(--white);
 }
@@ -237,7 +258,7 @@ footer {
     left: 50%;
     transform: translateX(-50%);
     background: var(--gold);
-    color: var(--white);
+    color: var(--dark-green);
     padding: 5px 15px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -263,7 +284,7 @@ footer {
     font-size: 2.5rem;
     font-family: var(--fonte-titulo);
     font-weight: 600;
-    color: var(--gold);
+    color: var(--gold-text);
     margin-bottom: 25px;
 }
 
@@ -271,6 +292,16 @@ footer {
     font-size: 1rem;
     opacity: 0.7;
     font-weight: 400;
+    color: var(--text-color);
+}
+
+.highlight-card .price {
+    color: var(--gold);
+}
+
+/* No fundo escuro, o gold claro funciona perfeitamente */
+.highlight-card .price small {
+    color: var(--white);
 }
 
 .pricing-features {
@@ -295,6 +326,7 @@ footer {
     font-style: italic;
 }
 
+/* Serviços e Sobre */
 .service-card {
     background: var(--white);
     padding: 40px;
@@ -309,7 +341,7 @@ footer {
 }
 
 .launch-tag {
-    color: var(--gold);
+    color: var(--gold-text);
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -338,14 +370,19 @@ footer {
 }
 
 .about-title {
-    color: var(--gold);
+    color: var(--gold-text);
     margin-bottom: 20px;
     font-size: 2.5rem;
 }
 
+/* Formulário */
 .form-section {
     background-color: var(--text-color);
     color: var(--white);
+}
+
+.form-title {
+    color: var(--gold);
 }
 
 .form-subtitle {
@@ -386,7 +423,6 @@ select option {
     color: var(--white);
 }
 
-
 .checkbox-group {
     display: flex;
     align-items: flex-start;
@@ -396,23 +432,14 @@ select option {
     background: rgba(184, 151, 104, 0.1);
     padding: 20px;
     border-left: 3px solid var(--gold);
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .checkbox-group input {
-    width: auto;
-    padding: 0;
     flex-shrink: 0;
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
-.checkbox-group label {
-    flex: 1;
-    line-height: 1.5;
-    word-wrap: break-word; 
-}
-
+/* Footer */
 footer {
     background-color: var(--white);
     padding: 60px 0 20px 0;
@@ -461,7 +488,7 @@ footer {
 }
 
 .social-icon:hover {
-    color: var(--gold);
+    color: var(--gold-text);
 }
 
 .map-container iframe {
@@ -479,10 +506,13 @@ footer {
 }
 
 .frontlab-signature a {
-    color: var(--gold);
+    color: var(--gold-text);
     font-weight: bold;
 }
 
+/* =========================================
+   MEDIA QUERIES
+   ========================================= */
 @media (max-width: 1024px) {
     .btn-gold {
         width: 100%;
@@ -546,17 +576,17 @@ footer {
     }
 
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .section-title,
     .launch-title,
     .about-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .price {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .pricing-grid,
