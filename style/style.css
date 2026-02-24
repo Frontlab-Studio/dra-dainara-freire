@@ -486,15 +486,88 @@ footer {
 }
 
 .frontlab-signature {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 0.8rem;
-    color: #888;
+    position: relative;
+    font-family: monospace, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--cor-texto);
+    opacity: 0.4;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-.frontlab-signature a {
-    color: var(--gold-text);
-    font-weight: bold;
+
+
+
+.frontlab-signature::before,
+.frontlab-signature::after {
+    content: '';
+    opacity: 0;
+    color: var(--cor-destaque);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.frontlab-signature::before {
+    content: '[';
+    transform: translateX(10px);
+}
+
+
+.frontlab-signature::after {
+    content: ']';
+    transform: translateX(-10px);
+}
+
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+    animation: serverPulse 2s infinite;
+}
+
+
+@keyframes serverPulse {
+    0% {
+        opacity: 0.4;
+    }
+
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(0, 255, 102, 0.8);
+    }
+
+
+    100% {
+        opacity: 0.4;
+    }
+}
+
+
+.frontlab-signature:hover {
+    opacity: 1;
+    color: var(--cor-destaque);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+
+.frontlab-signature:hover::before,
+.frontlab-signature:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-signature-text{
+    text-align: center;
 }
 
 @media (max-width: 1024px) {
